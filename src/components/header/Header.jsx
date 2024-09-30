@@ -9,6 +9,7 @@ import gsap from "gsap";
 import { useSelector } from "react-redux";
 import { getSelf } from "../../store/slices/selfHandler.slice";
 import profileImg from '../../assets/Images/profile-photo.png'
+import { FaBarsStaggered } from "react-icons/fa6";
 
 
 
@@ -55,9 +56,11 @@ const BlogHeader = () => {
       </div>
       <div id="header-link" className={styles.links}>
         <AuthLinks  />
+        
         <div id="profile-img">
           <img src={userImg ? userImg : profileImg} className="w-[4rem] h-[4rem] rounded-full" alt="" />
         </div>
+        <div id="bar"></div>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ import jsPDF from "jspdf";
 
 const Details = () => {
   const newsData = useLocation().state;
-
+  
   const relateNews = news[newsData.category];
   const [currentLang, setCurrentLang] = useState({
     name: localStorage.getItem("currentLang"),
@@ -146,7 +146,7 @@ const Details = () => {
                   </div>
                   <div
                     id="print-news"
-                    className="flex justify-start w-full mr-[4rem]"
+                    className="flex sm:justify-start justify-center  w-full mr-[4rem]"
                     onClick = {handlePrint}
                   >
                      <p
