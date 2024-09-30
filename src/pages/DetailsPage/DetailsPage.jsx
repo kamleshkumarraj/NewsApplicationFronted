@@ -20,7 +20,7 @@ const Details = () => {
     name: localStorage.getItem("currentLang"),
     code: localStorage.getItem("currentLangCode"),
   });
-  const [converetedLang, setConvertedLang] = useState({ name: "", code: "" });
+  const [converetedLang, setConvertedLang] = useState({ name: "english", code: "en-GB" });
   const supportedLangList = countries;
   const printableComponent = useRef();
 
@@ -146,7 +146,7 @@ const Details = () => {
                   </div>
                   <div
                     id="print-news"
-                    className="flex my-[1rem] sm:justify-start justify-center  w-full mr-[4rem]"
+                    className="flex my-[2rem] sm:justify-start justify-center  w-full mr-[4rem]"
                     onClick = {handlePrint}
                   >
                      <p
