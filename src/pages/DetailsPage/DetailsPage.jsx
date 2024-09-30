@@ -146,7 +146,7 @@ const Details = () => {
                   </div>
                   <div
                     id="print-news"
-                    className="flex sm:justify-start justify-center  w-full mr-[4rem]"
+                    className="flex my-[1rem] sm:justify-start justify-center  w-full mr-[4rem]"
                     onClick = {handlePrint}
                   >
                      <p
