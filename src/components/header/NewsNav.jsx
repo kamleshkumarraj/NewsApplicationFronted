@@ -3,7 +3,7 @@ import { FaFacebook, FaShareAlt, FaSave, FaPrint, FaThumbsUp, FaTwitter, FaLinke
 import { MdLocalPrintshop } from "react-icons/md";
 import { IoIosShareAlt } from "react-icons/io"; 
 
-const NewsNavbar = () => {
+const NewsNavbar = ({printfun}) => {
   const [isShareOpen, setIsShareOpen] = useState(false);
 
   const toggleShareOptions = () => {
@@ -55,7 +55,7 @@ const NewsNavbar = () => {
         
 
         {/* Print Icon */}
-        <div className="relative group p-[.8rem] rounded-full bg-[#7bceea8e]">
+        <div onClick={printfun}  className="relative group p-[.8rem] rounded-full bg-[#7bceea8e]">
             <MdLocalPrintshop color="" size={'2.4rem'} className="text-xl cursor-pointer" />
         </div>
 

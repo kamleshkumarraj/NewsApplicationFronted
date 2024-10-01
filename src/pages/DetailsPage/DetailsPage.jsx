@@ -91,7 +91,7 @@ const Details = () => {
             <div className="w-full xl:w-8/12">
             
               <div className="w-full pr-0 xl:pr-4 ">
-              <NewsNavbar />
+              <NewsNavbar printfun = {handlePrint} />
                 <div
                   ref={printableComponent}
                   className="flex flex-col bg-white gap-y-5"
