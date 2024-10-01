@@ -11,6 +11,7 @@ import axios from "axios";
 import countries from "../../data/couontryData";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import NewsNavbar from "../../components/header/NewsNav";
 
 const Details = () => {
   const newsData = useLocation().state;
@@ -88,7 +89,9 @@ const Details = () => {
         <div className="w-full px-[1.6rem] py-8 md:px-8">
           <div className="flex flex-wrap">
             <div className="w-full xl:w-8/12">
+            
               <div className="w-full pr-0 xl:pr-4 ">
+              <NewsNavbar />
                 <div
                   ref={printableComponent}
                   className="flex flex-col bg-white gap-y-5"
@@ -110,54 +113,7 @@ const Details = () => {
                     </p>
                   </div>
                 </div>
-                <div
-                  id="button-print-translate"
-                  className="px-[4rem] py-[2rem] bg-white"
-                >
-                  <div
-                    id="translate-function"
-                    className="flex items-center justify-end w-full "
-                  >
-                    <div id="option" className="w-[40%]">
-                      <select
-                        onChange={handleSelect}
-                        name=""
-                        id=""
-                        className="text-[1.8rem] font-[600] px-[1.5rem] py-[1rem] foucus:border-none focus:outline-none  border-[#00000022] focus:border-[2px] bg-[#00000089] text-[white] focus:border-[#015107] focus:rounded-[.75rem]  rounded-t-[.5rem]  border-[blue] border-b-[2px] placeholder:text-gray-600 w-[80%]"
-                      >
-                        {Object.keys(supportedLangList).length > 0 &&
-                          Object.entries(supportedLangList).map(
-                            ([code, name]) => (
-                              <option key={code} value={code}>
-                                {name}
-                              </option>
-                            )
-                          )}
-                      </select>
-                    </div>
-                    <div id="button">
-                      <p
-                        onClick={translateNews}
-                        className="px-[4rem] hover:top-[-1%] transition-all relative py-[1.25rem] text-[1.8rem] border bg-[#7304d3] rounded-[.5rem] self-start text-white hover:cursor-pointer"
-                      >
-                        Translate
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    id="print-news"
-                    className="flex my-[2rem] sm:justify-start justify-center  w-full mr-[4rem]"
-                    onClick = {handlePrint}
-                  >
-                     <p
-                      
-                      className="font-[600] text-[white] rounded-[.5rem] bg-cyan-600 text-[1.5rem] hover:bg-green-700 hover:cursor-pointer px-[2rem] py-[1rem]"
-                    >
-                      Print News
-                    </p>
-                  </div>
                 </div>
-              </div>
               <div id="comment-section" className="px-[2rem]">
                 <Comments />
               </div>

@@ -1,8 +1,6 @@
-import React from "react";
+
 import logo from "../assets/Images/compLogo.jpg";
 import Category from "./Category";
-import { FaFacebookF } from "react-icons/fa";
-import { AiFillYoutube, AiOutlineTwitter } from "react-icons/ai";
 import Gallery from "./news/Gallery";
 import RecentNewsFooter from "./news/RecentNewsFooter";
 import { Link } from "react-router-dom";
@@ -47,7 +45,7 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-3 px-[1.6rem] py-5 md:px-8 md:flex-row">
           <div className="flex items-center justify-center w-full text-gray-400 gap-y-2 text-[1.4rem] gap-[1rem]">
             <span className="text-center">Copyright © All right reserved</span>
-            <Link href={"#"}>Learn with Project</Link>
+            <Link href={"#"}>www.ajkerkotha.com</Link>
           </div>
           
         </div>
