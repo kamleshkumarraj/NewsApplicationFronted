@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import img from '../../assets/NewsImg/agriculture-img-1.jpg'
 import {
   FaFacebook,
   FaSave,
@@ -41,10 +42,10 @@ const NewsNavbar = ({ printfun }) => {
             <div className="absolute gap-[2rem] left-[50%] translate-x-[-50%] top-[100%] w-[24rem] p-2 mt-2 text-black bg-white rounded-lg shadow-lg hidden" id="share-box">
               <ul className="flex flex-col gap-[1.5rem]">
                 <li className="flex items-center p-2 space-x-2 hover:bg-gray-200">
-                  <FacebookMessengerShareButton url={url} className='flex gap-[2rem] items-center' >
+                  <FacebookShareButton title={"this is the best news"} summary={img} url={url} className='flex gap-[2rem] items-center' >
                     <FaFacebook size={"2.4rem"} />
                     <span className="text-[1.4rem]">Share on Facebook</span>
-                  </FacebookMessengerShareButton>
+                  </FacebookShareButton>
                 </li>
                 <li className="flex items-center p-2 space-x-2 hover:bg-gray-200">
                 <TwitterShareButton url={url} className='flex gap-[2rem] items-center'  >
