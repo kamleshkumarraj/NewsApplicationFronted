@@ -17,7 +17,7 @@ const AuthLinks = () => {
   const logoutHandler = async () => {
     const options = {
       method : "POST",
-      url : "http://localhost:5000/api/v1/auth/logout",
+      url : "https://newsapplicationbackend-1.onrender.com/api/v1/auth/logout",
     }
     
       const response = await dispatch(apiCalling(options))

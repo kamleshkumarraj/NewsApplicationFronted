@@ -1,57 +1,83 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SearchDataProvider from "./contexts/provideSearchData";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { apiCalling } from "./api/apiCalling.api";
-import { toast } from "react-toastify";
 import { setUser } from "./store/slices/selfHandler.slice";
-import { changeLanguage, getAllNews, setNewsList } from "./store/slices/NewsHandling.slices";
-import { news } from "./data";
+import { getAllNewsCategories, setNewsCategories, setNewsList, setPopularNews, setRecentNews } from "./store/slices/NewsHandling.slices";
+
+import axios from "axios";
 
 
 function App() {
   const dispatch = useDispatch()
   const token = localStorage.getItem("token");
-  const [newsData , setNewsData] = useState([]);
-  console.log(newsData)
+  const allCategoriesList = useSelector(getAllNewsCategories)
+  
+  //! method for saving all news in store in category wise.
+  useEffect(() => {
+    if(allCategoriesList.length> 0){
+      const promiseList = allCategoriesList.map((category) => {
+        const options = {
+          url : `https://newsapplicationbackend-1.onrender.com/api/v1/news/get-all?category=${category}`,
+          method : "GET"
+        }
+        return axios(options)
+      })
+      Promise.all(promiseList).then((response) => {
+        response.map(({data}) => {
+          dispatch(setNewsList({data : data.data , category : data.data[0].category}))
+        })
+      })
+      .catch((error) => console.log("We get error during fetching all news " , error))
+    }
+  },[allCategoriesList])
+  
+  //!method for login during the refresh the pages and.
   useEffect(() => {
     (async function login(){
       const options = {
         method : "GET",
-        url : `http://localhost:5000/api/v1/auth/direct-login?token=${token}`
+        url : `https://newsapplicationbackend-1.onrender.com/api/v1/auth/direct-login?token=${token}`
       }
      const res = await dispatch(apiCalling(options))
      if(res?.success){
        dispatch(setUser(res.data))
      }
     })()
-  })
-  useEffect(() => {
-    dispatch(setNewsList(news))
   },[])
-
-  //! now we write code for fetching all news from database and server.
+  
+  //! code for getting all news categoris.
   useEffect(() => {
-    (async function getAllNews(){
-      const options = {
-        method : "GET",
-        url : 'http://localhost:5000/api/v1/news/get-all'
-      }
-      const response = await dispatch(apiCalling(options))
-      console.log(response.data)
-      if(response?.success) setNewsData(response?.data)
-        else console.log("We getting error during fetching news from server !")
-      
+    (async function getAllNewsCategories(){
+        const options = {
+          url : 'https://newsapplicationbackend-1.onrender.com/api/v1/news/get-categories',
+          method : "GET"
+        }
+        const response = await dispatch(apiCalling(options))
+        if(response?.success) dispatch(setNewsCategories(response?.data))
+        else console.log("We getting error during fetching news categories from server !")
     })()
   },[])
 
-  
-
- 
-  //action dispatch for set all news in store.
-  
+  //! code for getting all popular news and recent news and also save in store.
+  useEffect(() => {
+    (async function getAllRecentPopularNews(){
+      const list = ['popular-news' , 'recent-news']
+      const newsList = list.map((item) => {
+        const options = {
+          url : `https://newsapplicationbackend-1.onrender.com/api/v1/news/${item}`,
+          method : "GET"
+        }
+        return axios(options)
+      })
+      const news = await Promise.all(newsList)
+      dispatch(setPopularNews(news[0].data.data))
+      dispatch(setRecentNews(news[1].data.data))
+    })()
+  },[])
   
   return (
     <>

@@ -14,7 +14,7 @@ const UsersTable = () => {
   useEffect(() => {
     const options = {
       method: "GET",
-      url: "http://localhost:5000/api/v1/admin/all-users",
+      url: "https://newsapplicationbackend-1.onrender.com/api/v1/admin/all-users",
     };
 
     (async function getAllUser() {

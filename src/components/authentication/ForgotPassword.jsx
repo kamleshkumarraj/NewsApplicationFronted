@@ -19,7 +19,7 @@ function ForgotPassword() {
     e.preventDefault();
     const options = {
       method: "POST",
-      url: "http://localhost:5000/api/v1/auth/forgot-password",
+      url: "https://newsapplicationbackend-1.onrender.com/api/v1/auth/forgot-password",
       formData,
     };
     const data = await dispatch(apiCalling(options));

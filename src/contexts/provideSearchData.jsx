@@ -1,20 +1,22 @@
 import { createContext, useEffect, useState } from "react"
-import useSearch from "../hooks/useSearch"
-import { news } from "../data"
-import {useDispatch} from 'react-redux'
+
+import {useDispatch, useSelector} from 'react-redux'
 import { apiCalling } from "../api/apiCalling.api"
+import { getAllNews } from "../store/slices/NewsHandling.slices"
+import useSearch from "../hooks/useSearch"
 
 export const SearchDataContext = createContext()
 
 
 function SearchDataProvider({children}) {
+  const news = useSelector(getAllNews)
     const [filteredData , setSearchQuery] = useSearch(news , (data) => data.title)
     const [recentNewsData , setNewsData] = useState([]);
     const dispatch = useDispatch()
     useEffect(() => {
       (async function(){
         const options = {
-          url : 'http://localhost:5000/api/v1/news/get-all',
+          url : 'https://newsapplicationbackend-1.onrender.com/api/v1/news/get-all',
           method : 'GET'
         }
        const response = await dispatch(apiCalling(options))

@@ -20,6 +20,9 @@ import SalesPage from "./admin/pages/SalesPage.jsx";
 import SettingsPage from "./admin/pages/SettingsPage.jsx";
 import UsersPage from "./admin/pages/UsersPage.jsx";
 import SearchNews from "./components/news/SearchNews.jsx";
+import ProfilePage from "./components/Profilepage.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import NotFound from "./pages/Error.page.jsx";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
@@ -27,6 +30,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement : <NotFound />,
     children: [
       {
         path: "/",
@@ -39,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/:category/:single-page",
         element: <Details />,
+      },
+      {
+        path : '/profile-page',
+        element : <ProtectedRoute><ProfilePage /></ProtectedRoute>
       },
       {
         path : '/search/:query',
