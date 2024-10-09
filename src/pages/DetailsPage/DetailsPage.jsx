@@ -79,9 +79,7 @@ const Details = () => {
     
   },[])
 
-  useEffect(() => {
-    
-  },[newsViewerList])
+  console.log(newsData)
    
 
   //*Working or handling function area.

@@ -31,7 +31,7 @@ function Login() {
     };
     const data = await dispatch(apiCalling(options));
     if (data.success) {
-      localStorage.setItem("tocken", data.tocken);
+      localStorage.setItem("token", data.token);
       toast.success(data.message);
       dispatch(setUser(data.user));
       navigate("/");
